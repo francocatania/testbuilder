@@ -99,53 +99,87 @@ describe('Visa', function() {
 });
 
 describe('MasterCard', function() {
-  // Chai lets you write more human-readable tests that throw helpful errors.
-  // Expect syntax is one way to do this, but there are others. 
-  // If you want to know more, check out the documentation. 
-  //   http://chaijs.com/api/bdd/
-  var expect = chai.expect;
- 
+  var should = chai.should();
   it('has a prefix of 51 and a length of 16', function() {
-    expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
+    detectNetwork('5112345678901234').should.equal('MasterCard');
   });
  
   it('has a prefix of 52 and a length of 16', function() {
-    expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
+    detectNetwork('5212345678901234').should.equal('MasterCard');
   });
  
   it('has a prefix of 53 and a length of 16', function() {
-    expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
+    detectNetwork('5312345678901234').should.equal('MasterCard');
   });
- 
 
-  // You can also use should instead of expect, which changes the style
-  // slightly. It really doesn't matter which one you use - check out 
-  // http://chaijs.com/guide/styles/ for more info, but it's important
-  // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten 
-  // these tests to pass using should syntax, refactor your tests to 
-  // use either expect or should, but not both. 
-  var should = chai.should();
-  
   it('has a prefix of 54 and a length of 16', function() {
     detectNetwork('5412345678901234').should.equal('MasterCard');
   });
  
   it('has a prefix of 55 and a length of 16', function() {
     detectNetwork('5512345678901234').should.equal('MasterCard');
-  })
- 
+  });
 });
 
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+  it('has a prefix of 6011 and a length of 16', function () {
+    detectNetwork('6011567890123456').should.equal('Discover');
+  });
+  it('has a prefix of 6011 and a length of 19', function() {
+    detectNetwork('6011567890123456789').should.equal('Discover');
+  });
+  it('has a prefix of 65 and a length of 16', function () {
+    detectNetwork('6511567890123456').should.equal('Discover');
+  });
+  it('has a prefix of 65 and a length of 19', function() {
+    detectNetwork('6511567890123456789').should.equal('Discover');
+  });
+  for (var i = 644; i < 650; i++) {
+    (function(index) {
+      it('has a prefix of ' + index.toString() + ' and a length of 16', function() {
+      detectNetwork(index.toString() + '4567890123456').should.equal('Discover');
+    });
+    it('has a prefix of ' + index.toString() + ' and a length of 19', function() {
+      detectNetwork(index.toString() + '4567890123456789').should.equal('Discover');
+    });
+    })(i);
+  };
 });
 
+
 describe('Maestro', function() {
-  // Write full test coverage for the Maestro card
+// Write full test coverage for the Maestro card
+  var prefixes = ['5018', '5020', '5038', '6304'];
+  for (var i = 0; i < prefixes.length; i++) {
+    (function(pre) {
+      it('has a prefix of ' + pre + ' and a length of 19', function() {
+        detectNetwork(pre + '567890123456789').should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 18', function() {
+        detectNetwork(pre + '56789012345678').should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 17', function() {
+        detectNetwork(pre + '5678901234567').should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 16', function() {
+        detectNetwork(pre + '567890123456').should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 15', function() {
+        detectNetwork(pre + '56789012345').should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 14', function() {
+        detectNetwork((pre + '5678901234')).should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 13', function() {
+        detectNetwork((pre + '567890123')).should.equal('Maestro');
+      });
+      it('has a prefix of ' + pre + ' and a length of 12', function() {
+        detectNetwork((pre + '56789012')).should.equal('Maestro');
+      });
+    })(prefixes[i]);
+  };
 });
 
 describe('should support China UnionPay')

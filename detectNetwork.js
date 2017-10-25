@@ -22,7 +22,7 @@ var detectNetwork = function(cardNumber) {
   	return 'MasterCard';
   } else if ((cardNumber.length === 16 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '6011' || (parseInt(cardNumber.slice(0,3)) >= 644 && parseInt(cardNumber.slice(0,3)) <= 649) || cardNumber.slice(0,2) === '65')) {
   	return 'Discover';
-  } else if ((cardNumber.length === 12 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
+  } else if ((cardNumber.length >= 12 || cardNumber.length <= 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
   	return 'Maestro';
   }
 };
