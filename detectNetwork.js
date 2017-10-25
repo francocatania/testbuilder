@@ -20,8 +20,12 @@ var detectNetwork = function(cardNumber) {
   	return 'Visa';
   } else if (cardNumber.length === 16 && cardNumber[0] === '5' && (cardNumber[1] === '1' || cardNumber[1] === '2' || cardNumber[1] === '3' || cardNumber[1] === '4' || cardNumber[1] === '5'))  {
   	return 'MasterCard';
+  } else if ((cardNumber.length === 16 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '6011' || (parseInt(cardNumber.slice(0,3)) >= 644 && parseInt(cardNumber.slice(0,3)) <= 649) || cardNumber.slice(0,2) === '65')) {
+  	return 'Discover';
+  } else if ((cardNumber.length === 12 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
+  	return 'Maestro';
   }
 };
 
-//Visa always has a prefix of 4 and a length of 13, 16, or 19.
-// MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
+
+// Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
