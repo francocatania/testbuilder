@@ -22,10 +22,15 @@ var detectNetwork = function(cardNumber) {
   	return 'MasterCard';
   } else if ((cardNumber.length === 16 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '6011' || (parseInt(cardNumber.slice(0,3)) >= 644 && parseInt(cardNumber.slice(0,3)) <= 649) || cardNumber.slice(0,2) === '65')) {
   	return 'Discover';
-  } else if ((cardNumber.length >= 12 || cardNumber.length <= 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
+  } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
   	return 'Maestro';
+  } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (parseInt(cardNumber.slice(0,6)) >= 622126 && parseInt(cardNumber.slice(0,6)) >= 622925) || (parseInt(cardNumber.slice(0,4)) >= 6282 && parseInt(cardNumber.slice(0,4)) >= 6288) || (parseInt(cardNumber.slice(0,3)) >= 624 && parseInt(cardNumber.slice(0,3)) <= 626)) {
+  	return 'China UnionPay';
+  } else if ((cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '4903' || cardNumber.slice(0,4) === '4905' || cardNumber.slice(0,4) === '4911' || cardNumber.slice(0,4) === '4936' || cardNumber.slice(0,4) === '6333' || cardNumber.slice(0,4) === '6759' || cardNumber.slice(0,6) === '64182' || cardNumber.slice(0,6) === '633110')) {
+  	return 'Switch';
   }
 };
 
 
-// Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
