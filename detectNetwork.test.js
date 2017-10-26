@@ -217,6 +217,55 @@ describe('Switch', function() {
   });
 });
 
-describe('China Union Pay', function() {
-
+describe('China UnionPay', function() {
+  for (var i = 622126; i < 622926; i++) {
+    (function(index) {
+      it('has a prefix of ' + index.toString() + ' and a length of 16', function() {
+      detectNetwork(index.toString() + '7890123456').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 17', function() {
+      detectNetwork(index.toString() + '78901234567').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 18', function() {
+      detectNetwork(index.toString() + '789012345678').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 19', function() {
+      detectNetwork(index.toString() + '7890123456789').should.equal('China UnionPay');
+      });
+    })(i);
+  };
+  for (var i = 624; i < 627; i++) {
+    (function(index) {
+      it('has a prefix of ' + index.toString() + ' and a length of 16', function() {
+      detectNetwork(index.toString() + '4567890123456').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 17', function() {
+      detectNetwork(index.toString() + '45678901234567').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 18', function() {
+      detectNetwork(index.toString() + '456789012345678').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 19', function() {
+      detectNetwork(index.toString() + '4567890123456789').should.equal('China UnionPay');
+      });
+    })(i);
+  };
+  for (var i = 6282; i < 6289; i++) {
+    (function(index) {
+      it('has a prefix of ' + index.toString() + ' and a length of 16', function() {
+      detectNetwork(index.toString() + '567890123456').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 17', function() {
+      detectNetwork(index.toString() + '5678901234567').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 18', function() {
+      detectNetwork(index.toString() + '56789012345678').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + index.toString() + ' and a length of 19', function() {
+      detectNetwork(index.toString() + '567890123456789').should.equal('China UnionPay');
+      });
+    })(i);
+  };
 });
+
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
