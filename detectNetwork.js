@@ -16,7 +16,7 @@ var detectNetwork = function(cardNumber) {
   	return 'Diner\'s Club';
   } else if (cardNumber.length === 15 && cardNumber[0] === '3' && (cardNumber[1] === '4' || cardNumber[1] === '7')) {
   	return 'American Express';
-  } else if ((cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) && cardNumber[0] === '4') {
+  } else if ((cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) && cardNumber[0] === '4' && !(isASwitchPrefix(cardNumber))) {
   	return 'Visa';
   } else if (cardNumber.length === 16 && cardNumber[0] === '5' && (cardNumber[1] === '1' || cardNumber[1] === '2' || cardNumber[1] === '3' || cardNumber[1] === '4' || cardNumber[1] === '5'))  {
   	return 'MasterCard';
@@ -31,6 +31,8 @@ var detectNetwork = function(cardNumber) {
   }
 };
 
-
+var isASwitchPrefix = function(number) {
+	return (number.slice(0,4) === '4903' || number.slice(0,4) === '4905' || number.slice(0,4) === '4911' || number.slice(0,4) === '4936');
+}
 // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
 // Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
