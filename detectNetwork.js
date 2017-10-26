@@ -24,9 +24,9 @@ var detectNetwork = function(cardNumber) {
   	return 'Discover';
   } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (cardNumber.slice(0,4) === '5018' || cardNumber.slice(0,4) === '5020' || cardNumber.slice(0,4) === '5038' || cardNumber.slice(0,4) === '6304')) {
   	return 'Maestro';
-  } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (parseInt(cardNumber.slice(0,6)) >= 622126 && parseInt(cardNumber.slice(0,6)) >= 622925) || (parseInt(cardNumber.slice(0,4)) >= 6282 && parseInt(cardNumber.slice(0,4)) >= 6288) || (parseInt(cardNumber.slice(0,3)) >= 624 && parseInt(cardNumber.slice(0,3)) <= 626)) {
+  } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (parseInt(cardNumber.slice(0,6)) >= 622126 && parseInt(cardNumber.slice(0,6)) <= 622925) || (parseInt(cardNumber.slice(0,4)) >= 6282 && parseInt(cardNumber.slice(0,4)) <= 6288) || (parseInt(cardNumber.slice(0,3)) >= 624 && parseInt(cardNumber.slice(0,3)) <= 626)) {
   	return 'China UnionPay';
-  } else if ((cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '4903' || cardNumber.slice(0,4) === '4905' || cardNumber.slice(0,4) === '4911' || cardNumber.slice(0,4) === '4936' || cardNumber.slice(0,4) === '6333' || cardNumber.slice(0,4) === '6759' || cardNumber.slice(0,6) === '64182' || cardNumber.slice(0,6) === '633110')) {
+  } else if ((cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.slice(0,4) === '4903' || cardNumber.slice(0,4) === '4905' || cardNumber.slice(0,4) === '4911' || cardNumber.slice(0,4) === '4936' || cardNumber.slice(0,4) === '6333' || cardNumber.slice(0,4) === '6759' || cardNumber.slice(0,6) === '564182' || cardNumber.slice(0,6) === '633110')) {
   	return 'Switch';
   }
 };

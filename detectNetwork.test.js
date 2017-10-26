@@ -182,5 +182,41 @@ describe('Maestro', function() {
   };
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+describe('Switch', function() {
+  var prefixesWithLength4 = ['4903', '4905', '4911', '4936', '6333', '6759'];
+  for (var i = 0; i < prefixesWithLength4.length; i++) {
+    (function(pre) {
+      it('has a prefix of ' + pre + ' and a lenth of 16', function() {
+        detectNetwork(pre + '567890123456').should.equal('Switch');
+      });
+      it('has a prefix of ' + pre + ' and a lenth of 18', function() {
+        detectNetwork(pre + '56789012345678').should.equal('Switch');
+      });
+      it('has a prefix of ' + pre + ' and a lenth of 19', function() {
+        detectNetwork(pre + '567890123456789').should.equal('Switch');
+      });
+    })(prefixesWithLength4[i]);
+  };
+  it('has a prefix of 564182 and a length of 16', function() {
+    detectNetwork('5641827890123456').should.equal('Switch');
+  });
+  it('has a prefix of 564182 and a length of 18', function() {
+    detectNetwork('564182789012345678').should.equal('Switch');
+  });
+  it('has a prefix of 564182 and a length of 19', function() {
+    detectNetwork('5641827890123456789').should.equal('Switch');
+  });
+  it('has a prefix of 633110 and a length of 16', function() {
+    detectNetwork('6331107890123456').should.equal('Switch');
+  });
+  it('has a prefix of 633110 and a length of 18', function() {
+    detectNetwork('633110789012345678').should.equal('Switch');
+  });
+  it('has a prefix of 633110 and a length of 19', function() {
+    detectNetwork('6331107890123456789').should.equal('Switch');
+  });
+});
+
+describe('China Union Pay', function() {
+
+});
